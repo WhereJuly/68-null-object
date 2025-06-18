@@ -1,7 +1,7 @@
 # build output
 dist/
 .builds
-.delivery/temp
+.delivery/.temp
 
 # dependencies
 node_modules/
