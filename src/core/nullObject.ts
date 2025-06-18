@@ -65,8 +65,10 @@ class NullObjectHandler implements ProxyHandler<any> {
     }
 
     public get(_target: any, prop: PropertyKey) {
-        if (prop === Symbol.toPrimitive) return () => '';
-        if (prop === 'toString') return this._toString.bind(this);
+        // NB: Symbol.toPrimitive: case for implicit type coercion e.g. `obj + 'text' -> ._toString()` 
+        if (prop === Symbol.toPrimitive || prop === 'toString') {
+            return this._toString.bind(this);
+        }
 
         return this.proxy;
     };

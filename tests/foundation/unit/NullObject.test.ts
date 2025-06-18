@@ -48,6 +48,21 @@ describe('Basic Null-Object Test', () => {
         expect(actual.dummy.another).toBeInstanceOf(Function);
     });
 
+    it('Should coerce to identity name', () => {
+        const expected = '[NullObject]'
+        
+        const obj = nullObject();
+
+        // string coercion 
+        expect(`${obj}`).toEqual(expected); // NOSONAR
+
+        // explicit string conversion 
+        expect(String(obj)).toEqual(expected); // NOSONAR
+
+        // implicit coercion
+        expect(obj + '').toEqual(expected); // NOSONAR
+    });
+
     describe('Null-object identity name test', () => {
 
         it('Should output a default null-object identity name', () => {
