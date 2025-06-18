@@ -18,7 +18,11 @@
         "package:lint:readme": "npx markdown-link-check --progress --quiet ./readme.md",
         "package:publish": "npm publish ./.delivery/.builds/dist"
     },
-    "author": "valentineshi.dev@gmail.com",
+    "author": {
+        "name": "Valentine Shi",
+        "email": "valentineshi.dev@gmail.com",
+        "url": "https://valentineshi.dev"
+    },
     "license": "MIT",
     "homepage": "https://github.com/WhereJuly/68-null-object#readme",
     "issues": "https://github.com/WhereJuly/68-null-object/issues",
