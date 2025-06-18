@@ -44,6 +44,14 @@ class NullObjectHandler implements ProxyHandler<any> {
         return this.proxy;
     };
 
+
+    /**
+     * Accept all assignments, but do nothing
+     */
+    public set(_target: any, _prop: PropertyKey, _value: any): boolean {
+        return true;
+    }
+
     public apply() { return this.proxy; };
 
     private _toString(): string {
