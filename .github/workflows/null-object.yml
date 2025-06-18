@@ -3,7 +3,7 @@ name: null-object package test with coverage
 on:
   push:
     branches:
-      # - never # Skip the workflow for debugging purposes; 
+      # - never # Skip the workflow for debugging purposes;
       # - implement/package-ci # NB: For debugging only
       - develop
       - master
@@ -30,8 +30,19 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+      #  Install dependencies and build the package to test in .usage folder
+      - name: Install dependencies and build the package
+        run: |
+          npm install
+          cd .usage && npm install
+          cd ../
+          npm run package:build
+
+      - name: Testing the latest build at usage .usage subfolder
+        working-directory: ./.usage
+        run: |
+          npm install
+          npm run test:usage
 
       - name: Run tests and collect coverage
         # NB: See https://app.codecov.io/gh/WhereJuly/60-1-oas-markdown-merger/tests/new
@@ -44,8 +55,7 @@ jobs:
       - name: Create and push tag on master branch only
         # NB: For debugging
         # if: github.ref_name == 'implement/package-ci'
-        # if: github.ref_name == 'master'
-        if: github.ref_name == 'develop'
+        if: github.ref_name == 'master'
         run: |
           # Extract package name and version from package.json
           PACKAGE_NAME=$(jq -r .name package.json)
@@ -65,8 +75,7 @@ jobs:
       - name: Upload coverage reports to Codecov
         # NB: For debugging
         # if: github.ref_name == 'implement/package-ci'
-        # if: github.ref_name == 'master'
-        if: github.ref_name == 'develop'
+        if: github.ref_name == 'master'
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
