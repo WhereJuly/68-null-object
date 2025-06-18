@@ -4,19 +4,52 @@
  * @description
  * 
  * @example
+ * 
+ * Help debugging with `toString` and optional named identity 
+ * 
+ * ```typescript
+ * const logger = config.log ? realLogger : nullObject<Logger>()
+ * logger.toString() // [NullObject]
+ * // or
+ * const logger = config.log ? realLogger : nullObject<Logger>('Logger');
+ * logger.toString() // [NullObject: Logger]
+ * ```
+ * 
  */
+export function nullObject<T = Record<string, any>>(name?: string): T {
+    const handler = new NullObjectHandler(name);
 
-export function createNullObject<T extends object>(): T {
+    return handler.proxy;
+}
 
-    const handler: ProxyHandler<any> = {
-        get: (_, prop) => {
-            if (prop === Symbol.toPrimitive) return () => '';
-            return typeof prop === 'symbol' ? undefined : proxy;
-        },
-        apply: () => proxy, // if function is called
+
+class NullObjectHandler implements ProxyHandler<any> {
+
+    public proxy: any;
+    private readonly name?: string;
+
+    constructor(name?: string) {
+        this.name = name;
+
+        this.get = this.get.bind(this);
+        this.apply = this.apply.bind(this);
+
+        this.proxy = new Proxy(() => this.proxy, this);
+    }
+
+    public get(_target: any, prop: PropertyKey) {
+        if (prop === Symbol.toPrimitive) return () => '';
+        if (prop === 'toString') return this._toString.bind(this);
+
+        return this.proxy;
     };
 
-    const proxy = new Proxy(() => proxy, handler);
-    return proxy;
+    public apply() { return this.proxy; };
+
+    private _toString(): string {
+        const name = this.name ? `: ${this.name}` : '';
+
+        return `[NullObject${name}]`;
+    }
 
 }
