@@ -27,7 +27,8 @@
         "stub",
         "fake",
         "dummy",
-        "noop function"
+        "noop function",
+        "typescript"
     ],
     "devDependencies": {
         "@eslint/js": "^9.29.0",
