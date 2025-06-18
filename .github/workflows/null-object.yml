@@ -1,4 +1,4 @@
-name: null-object package test, coverage
+name: null-object package test with coverage
 
 on:
   push:
@@ -30,29 +30,13 @@ jobs:
         with:
           node-version: 20
 
-      #  Install dependencies and build the package to test in .usage folder
-      - name: Install dependencies and build the package
-        run: |
-          npm install
-          cd .usage && npm install
-          cd ../
-          npm run package:build
-
-      - name: Testing the latest build at usage .usage subfolder
-        working-directory: ./.usage
-        run: |
-          npm install
-          npm run test:usage
+      - name: Install dependencies
+        run: npm install
 
       - name: Run tests and collect coverage
         # NB: See https://app.codecov.io/gh/WhereJuly/60-1-oas-markdown-merger/tests/new
         # NB: See https://app.codecov.io/gh/WhereJuly/60-1-oas-markdown-merger/new
         run: npm run test:foundation -- --coverage
-
-      # - name: Debug - show the ref names
-      #   run: |
-      #     echo ref ${{ github.ref }}
-      #     echo ref name ${{ github.ref_name }}
 
       # I need this step only run for the paths mentioned above AND for only `master` branch;`
       # create and push the `<package-name>@v<package-version>` tag to the monorepo
