@@ -1,10 +1,10 @@
 # Null-Object
 
+A tiny runtime type-safe _polymorphic noop object_ that substitutes for your real implementation without side effects.
+
 <small>See Null Object pattern [^1].</small>
 
 [^1]: [Kerievsky J., Refactoring to Patterns (2004)](https://www.amazon.com/Refactoring-Patterns-Joshua-Kerievsky/dp/0321213351), p. 343; [Fowler M., Refactoring (2018)](https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Signature/dp/0134757599), p. 289 under "Introduce Special Case" title.
-
-A tiny runtime type-safe _polymorphic noop object_ that substitutes for your real implementation without side effects.
 
 **Package Status**
 
@@ -26,8 +26,7 @@ A tiny runtime type-safe _polymorphic noop object_ that substitutes for your rea
 - [Basic Usage](#basic-usage)
 - [Summary](#summary)
 - [Usage](#usage)
-- [Convenience](#convenience)
-  - [noop Function](#noop-function)
+  - [The Convenience noop Function](#the-convenience-noop-function)
 - [Maintenance](#maintenance)
   - [Contributions](#contributions)
 - [License](#license)
@@ -57,14 +56,11 @@ noop(); // returns `undefined`
 
 ## Summary
 
-Provides a safe fallback for any expected object interface by returning a no-op implementation object. Any methods called on it are noop. It enables cleaner and more robust code due to no null checks or conditional logic.
+It is often useful to silently replace an optional dependency, service, or plugin that is not available in some environment (e.g. stub metrics service in development and stage environments).
 
-- No need for `if (handler)` checks;
-- `handler.doSomething()` always works, even on the noop;
-- Methods return `undefined` or chainable noop;
-- Can be typed to match the real interface;
+The package provides a safe fallback for any expected object interface by returning a no-op implementation object. It enables cleaner and more robust code due to no null checks or conditional logic.
 
-It is useful to silently replace an optional dependency, service, or plugin that is not available in some environment (e.g. stub metrics).
+Any methods called on it are noop, including chained ones. Methods silently accept arbitrary arguments. Access any properties, including nested, silently assign to properties.
 
 Common use cases include:
 
@@ -130,9 +126,7 @@ const plugin = userProvidedPlugin ?? nullObject<Plugin>();
 plugin.settings.some = true;
 ```
 
-## Convenience
-
-### noop Function
+### The Convenience noop Function
 
 The package also provides the `noop` function so that you do not have to import another package for it.
 
