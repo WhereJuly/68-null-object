@@ -1,6 +1,6 @@
 {
     "name": "null-object",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "The tiny polymorphic noop-behavior object to stub actual objects conditionally.",
     "type": "module",
     "main": "./code/index.js",
@@ -48,6 +48,7 @@
         "@types/node": "^22.15.32",
         "@typescript-eslint/eslint-plugin": "^8.34.1",
         "@typescript-eslint/parser": "^8.34.1",
+        "@vitest/coverage-v8": "^3.2.4",
         "cpy-cli": "^5.0.0",
         "eslint": "^9.29.0",
         "markdown-link-check": "^3.13.7",
