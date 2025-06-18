@@ -16,6 +16,7 @@ describe('Basic Null-Object Test', () => {
 
         expect(actual.dummy).toBeInstanceOf(Function);
         expect(actual.dummy.another).toBeInstanceOf(Function);
+        expect(actual.dummy().another.more()).toBeInstanceOf(Function);
     });
 
     it('Should be able to call a noop method', () => {
