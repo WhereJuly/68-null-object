@@ -79,12 +79,8 @@ Common use cases include:
   function createHandler(callbacks: Callbacks = nullObject<Callbacks>()) {
    callbacks.onReady(); // Always callable
   }
-  // Usage:
-  const callback;
-  createHandler(); // Will silently
   ```
 - Middleware chains:
-
   ```typescript
   const middleware = [authMiddleware, config.enableAudit ? auditMiddleware : nullObject<Middleware>()];
   ```
