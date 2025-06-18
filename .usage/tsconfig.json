@@ -1,18 +1,15 @@
 {
     "extends": "@tsconfig/node20/tsconfig.json",
     "compilerOptions": {
-        "incremental": true /* Save .tsbuildinfo files to allow for incremental compilation of projects. */,
-        "tsBuildInfoFile": "./.delivery/.temp/.tsbuildinfo" /* Specify the path to .tsbuildinfo incremental compilation file. */,
-        "target": "es2022",
+        // "incremental": true /* Save .tsbuildinfo files to allow for incremental compilation of projects. */,
+        // "tsBuildInfoFile": ".temp/.tsbuildinfo" /* Specify the path to .tsbuildinfo incremental compilation file. */,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "baseUrl": ".",
         "paths": {
-            "@src/*": ["./src/*"],
-            "@tests/*": ["./tests/*"],
-            "@fixtures/*": ["./tests/foundation/.ancillary/fixtures/*"]
+            "@tests/*": ["./tests/*"]
         },
         "resolveJsonModule": true,
         "declaration": true,
@@ -23,7 +20,6 @@
         "noUncheckedIndexedAccess": true /* Add 'undefined' to a type when accessed using an index. */,
         "skipLibCheck": true
     },
-
-    "include": ["./src", "eslint.config.mjs", ".delivery/scripts", "./tests/foundation/**/*.ts", "./tests/foundation/.ancillary/**/*.*"],
-    "exclude": ["node_modules", "./.usage/tests/**/*.ts"]
+    "include": ["./tests", "examples.ts"],
+    "exclude": ["node_modules"]
 }

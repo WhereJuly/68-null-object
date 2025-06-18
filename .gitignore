@@ -1,6 +1,8 @@
 # build output
 dist/
 .builds
+.delivery/.temp
+.coverage
 
 # dependencies
 node_modules/

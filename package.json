@@ -1,6 +1,6 @@
 {
     "name": "null-object",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "description": "The tiny polymorphic noop-behavior object to stub actual objects conditionally.",
     "type": "module",
     "main": "./code/index.js",
@@ -8,9 +8,21 @@
     "types": "./types/index.d.ts",
     "scripts": {
         "test:foundation": "npm run check-types && vitest run --config tests/foundation/.ancillary/config/vitest.config.ts",
-        "check-types": "npx tsc --noEmit --project ."
+        "check-types": "npx tsc --noEmit --project .",
+        "package:build": "tsx .delivery/scripts/build.ts",
+        "lint": "npx eslint ./src && npx eslint ./.usage",
+        "package:de-alias": "npx tsc-alias -p ./.delivery/configuration/tsconfig.json --verbose",
+        "package:bundle:copy": "cpy ./package.json ./LICENSE ./readme.md ./.delivery/.builds/dist",
+        "package:pack": "cd ./.delivery/.builds/dist && npm pack",
+        "package:test:usage": "cd .usage && npm run test:usage",
+        "package:lint:readme": "npx markdown-link-check --progress --quiet ./readme.md",
+        "package:publish": "npm publish ./.delivery/.builds/dist"
     },
-    "author": "valentineshi.dev@gmail.com",
+    "author": {
+        "name": "Valentine Shi",
+        "email": "valentineshi.dev@gmail.com",
+        "url": "https://valentineshi.dev"
+    },
     "license": "MIT",
     "homepage": "https://github.com/WhereJuly/68-null-object#readme",
     "issues": "https://github.com/WhereJuly/68-null-object/issues",
@@ -26,7 +38,9 @@
         "fallback",
         "stub",
         "fake",
-        "dummy"
+        "dummy",
+        "noop function",
+        "typescript"
     ],
     "devDependencies": {
         "@eslint/js": "^9.29.0",
@@ -34,8 +48,11 @@
         "@types/node": "^22.15.32",
         "@typescript-eslint/eslint-plugin": "^8.34.1",
         "@typescript-eslint/parser": "^8.34.1",
+        "@vitest/coverage-v8": "^3.2.4",
         "cpy-cli": "^5.0.0",
         "eslint": "^9.29.0",
+        "markdown-link-check": "^3.13.7",
+        "rimraf": "^6.0.1",
         "tsc-alias": "^1.8.16",
         "tsx": "^4.20.3",
         "typescript": "^5.8.3",
