@@ -33,7 +33,7 @@ describe('Null-Object & noop Function Usage Test', () => {
         expect(actual.toString()).toEqual(`[NullObject: ${fixture}]`); // NOSONAR
     });
 
-    it('Should accept any arguments without throwing', () => {
+    it('noop: Should accept any arguments without throwing', () => {
         expect(() => noop(1, 'a', true, null)).not.toThrow();
     });
 
