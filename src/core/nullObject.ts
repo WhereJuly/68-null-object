@@ -2,7 +2,7 @@
 
 /**
  * @description
- * Creates a no-op proxy that silently accepts any method calls, property accesses, 
+ * Creates a no-op object that silently accepts any method calls, property accesses, 
  * or assignments (even nested). Useful for optional dependencies or safe stubbing.
  * Optional name aids debugging via .toString().
  * 
