@@ -4,7 +4,7 @@
 
 [^1]: [Kerievsky J., Refactoring to Patterns (2004)](https://www.amazon.com/Refactoring-Patterns-Joshua-Kerievsky/dp/0321213351), p. 343; [Fowler M., Refactoring (2018)](https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Signature/dp/0134757599), p. 289 under "Introduce Special Case" title.
 
-A tiny runtime _polymorphic noop object_ that substitutes for your real implementation without side effects.
+A tiny runtime type-safe _polymorphic noop object_ that substitutes for your real implementation without side effects.
 
 **Package Status**
 
@@ -18,6 +18,8 @@ A tiny runtime _polymorphic noop object_ that substitutes for your real implemen
 ![npm downloads](https://img.shields.io/npm/dm/env-schema-cli.svg?color=green)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=green)](https://opensource.org/licenses/MIT)
 
+---
+
 <details>
 <summary><b><a>Contents</a></b></summary>
 
@@ -26,14 +28,31 @@ A tiny runtime _polymorphic noop object_ that substitutes for your real implemen
 - [Usage](#usage)
 - [Convenience](#convenience)
   - [noop Function](#noop-function)
+- [Maintenance](#maintenance)
+  - [Contributions](#contributions)
+- [License](#license)
 
 </details>
 
 ## Basic Usage
 
+Install the package.
+
+```bash
+npm install --save null-object
+```
+
+Null-Object:
+
 ```typescript
 const logger = config.log ? realLogger : nullObject<Logger>();
 logger.info('User signed in'); // Always safe to call any method or access property on a null-object
+```
+
+A bundled noop function just for convenience:
+
+```typescript
+noop(); // returns `undefined`
 ```
 
 ## Summary
@@ -76,15 +95,25 @@ Common use cases include:
 
 ## Usage
 
-Call any method, chained, with arbitrary arguments, access any property, nested and do nothing.
+The signature:
 
 ```typescript
-const silent = nullObject<{ method: any; prop: any }>();
+function nullObject<T = Record<string, any>>(name?: string): T;
+```
+
+Call any method, chained if needed, with arbitrary arguments, access any property, including nested and do nothing. Optionally provide null-object with the actual object type to ensure type safety.
+
+```typescript
+type TSomeActualHandler = { method: any; prop: any }; // May come as third-party type
+
+const silent = nullObject<TSomeActualHandler>();
+// Could also use it untyped: `const silent = nullObject()`
+
 silent.method().another('arbitrary', 'args', 123, true);
 silent.prop.method('arbitrary', 'args', 123, true).more;
 ```
 
-Help debugging with `.toString()` and optional named identity
+Help debugging with `.toString()` and optional named identity.
 
 ```typescript
 const logger = config.log ? realLogger : nullObject<Logger>();
@@ -92,6 +121,13 @@ const name = logger.toString(); // name === [NullObject]
 // or
 const logger = config.log ? realLogger : nullObject<Logger>('Logger');
 const name = logger.toString(); // name === [NullObject: Logger]
+```
+
+Can silently accept assignments to any property including nested.
+
+```typescript
+const plugin = userProvidedPlugin ?? nullObject<Plugin>();
+plugin.settings.some = true;
 ```
 
 ## Convenience
@@ -107,3 +143,15 @@ function onEvent(callback: () => void = noop) {
  callback(); // Safe to call without checking
 }
 ```
+
+## Maintenance
+
+The package is written in TypeScript with the informative JSDoc blocks available on hover for public interface (e.g. in VS Code) for comfortable programmatic usage. The code is carefully crafted with TDD allowing simple extension. The project is production-ready and actively maintained.
+
+### Contributions
+
+Filling issues, questions in Discussions are all welcome.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
