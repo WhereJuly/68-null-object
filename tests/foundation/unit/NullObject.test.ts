@@ -1,7 +1,8 @@
 'use strict';
 
-import { nullObject } from '@src/nullObject.js';
 import { describe, expect, it } from 'vitest';
+
+import { nullObject } from '@src/core/nullObject.js';
 
 describe('Basic Null-Object Test', () => {
 

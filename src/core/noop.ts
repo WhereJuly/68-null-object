@@ -8,7 +8,7 @@
  * noop() // returns `undefined`
  * noop(1, 'a', true, null) // Accepts arbitrary arguments without throwing
  * 
- * @tutorial
+ * @example
  * 
  * Provide a safe default when a callback is optional:
  * ```typescript

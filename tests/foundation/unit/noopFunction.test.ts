@@ -2,7 +2,7 @@
 
 import { describe, it, expect } from 'vitest';
 
-import { noop } from '@src/noop.js';
+import { noop } from '@src/core/noop.js';
 
 describe('noop Function Test', () => {
 
