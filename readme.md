@@ -6,6 +6,18 @@
 
 A tiny runtime _polymorphic noop object_ that substitutes for your real implementation without side effects.
 
+**Package Status**
+
+![Codecov](https://img.shields.io/codecov/c/github/WhereJuly/68-null-object?color=%2308A108)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
+
+![npm version](https://img.shields.io/npm/v/env-schema-cli?color=green)
+![npm downloads](https://img.shields.io/npm/dm/env-schema-cli.svg?color=green)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=green)](https://opensource.org/licenses/MIT)
+
 <details>
 <summary><b><a>Contents</a></b></summary>
 
@@ -21,7 +33,7 @@ A tiny runtime _polymorphic noop object_ that substitutes for your real implemen
 
 ```typescript
 const logger = config.log ? realLogger : nullObject<Logger>();
-logger.info('User signed in'); // Always safe
+logger.info('User signed in'); // Always safe to call any method or access property on a null-object
 ```
 
 ## Summary
@@ -63,6 +75,24 @@ Common use cases include:
   ```
 
 ## Usage
+
+Call any method, chained, with arbitrary arguments, access any property, nested and do nothing.
+
+```typescript
+const silent = nullObject<{ method: any; prop: any }>();
+silent.method().another('arbitrary', 'args', 123, true);
+silent.prop.method('arbitrary', 'args', 123, true).more;
+```
+
+Help debugging with `.toString()` and optional named identity
+
+```typescript
+const logger = config.log ? realLogger : nullObject<Logger>();
+const name = logger.toString(); // name === [NullObject]
+// or
+const logger = config.log ? realLogger : nullObject<Logger>('Logger');
+const name = logger.toString(); // name === [NullObject: Logger]
+```
 
 ## Convenience
 
