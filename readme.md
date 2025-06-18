@@ -32,7 +32,10 @@ Common use cases include:
   const metrics = prod ? nullObject<Metrics>() : devMetrics;
   ```
 
-- Provide a noop plugin when none is installed: `const plugin = userProvidedPlugin ?? nullObject<Plugin>();`
+- Provide a noop plugin when none is installed:
+  ```typescript
+  const plugin = userProvidedPlugin ?? nullObject<Plugin>();
+  ```
 - Avoid conditional logic in consumers via default parameter:
   ```typescript
   function createHandler(callbacks: Callbacks = nullObject<Callbacks>()) {
