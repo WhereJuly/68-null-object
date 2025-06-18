@@ -26,7 +26,8 @@
         "fallback",
         "stub",
         "fake",
-        "dummy"
+        "dummy",
+        "noop function"
     ],
     "devDependencies": {
         "@eslint/js": "^9.29.0",

@@ -6,6 +6,17 @@
 
 A tiny runtime _polymorphic noop object_ that substitutes for your real implementation without side effects.
 
+<details>
+<summary><b><a>Contents</a></b></summary>
+
+- [Basic Usage](#basic-usage)
+- [Summary](#summary)
+- [Usage](#usage)
+- [Convenience](#convenience)
+  - [noop Function](#noop-function)
+
+</details>
+
 ## Basic Usage
 
 ```typescript
@@ -52,3 +63,17 @@ Common use cases include:
   ```
 
 ## Usage
+
+## Convenience
+
+### noop Function
+
+The package also provides the `noop` function so that you do not have to import another package for it.
+
+```typescript
+noop(); // returns `undefined`
+noop(1, 'a', true, null); // Accepts arbitrary arguments without throwing
+function onEvent(callback: () => void = noop) {
+ callback(); // Safe to call without checking
+}
+```
