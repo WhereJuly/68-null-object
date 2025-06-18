@@ -2,6 +2,15 @@
 
 /**
  * @description
+ * Creates a no-op proxy that silently accepts any method calls, property accesses, 
+ * or assignments (even nested). Useful for optional dependencies or safe stubbing.
+ * Optional name aids debugging via .toString().
+ * 
+ * @signature
+ * 
+ * ```typescript
+ * function nullObject<T = Record<string, any>>(name?: string): T
+ * ```
  * 
  * @example
  * 
@@ -25,13 +34,21 @@
  * const name = logger.toString() // name === [NullObject: Logger]
  * ```
  * 
+ * @example
+ * 
+ * Can silently assign to any property including nested
+ * 
+ * ```typescript
+ * const plugin = userProvidedPlugin ?? nullObject<Plugin>();
+ * plugin.settings.some = true;
+ * ```
+ * 
  */
 export function nullObject<T = Record<string, any>>(name?: string): T {
     const handler = new NullObjectHandler(name);
 
     return handler.proxy as T;
 }
-
 
 class NullObjectHandler implements ProxyHandler<any> {
 
