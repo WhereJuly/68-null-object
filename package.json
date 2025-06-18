@@ -1,0 +1,45 @@
+{
+    "name": "null-object",
+    "version": "0.0.1",
+    "description": "The tiny polymorphic noop-behavior object to stub actual objects conditionally.",
+    "type": "module",
+    "main": "./code/index.js",
+    "module": "./code/index.js",
+    "types": "./types/index.d.ts",
+    "scripts": {
+        "test:foundation": "npm run check-types && vitest run --config tests/foundation/.ancillary/config/vitest.config.ts",
+        "check-types": "npx tsc --noEmit --project ."
+    },
+    "author": "valentineshi.dev@gmail.com",
+    "license": "MIT",
+    "homepage": "https://github.com/WhereJuly/68-null-object#readme",
+    "issues": "https://github.com/WhereJuly/68-null-object/issues",
+    "keywords": [
+        "null-object",
+        "noop object",
+        "noop behavior",
+        "chainable noop",
+        "noop method",
+        "stub property",
+        "polymorphic",
+        "substitute",
+        "fallback",
+        "stub",
+        "fake",
+        "dummy"
+    ],
+    "devDependencies": {
+        "@eslint/js": "^9.29.0",
+        "@tsconfig/node20": "^20.1.6",
+        "@types/node": "^22.15.32",
+        "@typescript-eslint/eslint-plugin": "^8.34.1",
+        "@typescript-eslint/parser": "^8.34.1",
+        "cpy-cli": "^5.0.0",
+        "eslint": "^9.29.0",
+        "tsc-alias": "^1.8.16",
+        "tsx": "^4.20.3",
+        "typescript": "^5.8.3",
+        "typescript-eslint": "^8.34.1",
+        "vitest": "^3.2.4"
+    }
+}
