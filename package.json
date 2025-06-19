@@ -1,6 +1,6 @@
 {
-    "name": "null-object",
-    "version": "0.0.5",
+    "name": "@wherejuly/null-object",
+    "version": "1.0.1",
     "description": "The tiny polymorphic noop-behavior object to stub actual objects conditionally.",
     "type": "module",
     "main": "./code/index.js",
