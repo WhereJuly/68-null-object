@@ -14,7 +14,8 @@ A tiny runtime type-safe _polymorphic noop object_ that substitutes for your rea
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
 
-![npm version](https://img.shields.io/npm/v/env-schema-cli?color=green)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@wherejuly/null-object)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@wherejuly/null-object)
 ![npm downloads](https://img.shields.io/npm/dm/env-schema-cli.svg?color=green)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=green)](https://opensource.org/licenses/MIT)
 
@@ -38,7 +39,7 @@ A tiny runtime type-safe _polymorphic noop object_ that substitutes for your rea
 Install the package.
 
 ```bash
-npm install --save null-object
+npm install @wherejuly/null-object
 ```
 
 Null-Object:
