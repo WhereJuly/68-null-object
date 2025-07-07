@@ -16,7 +16,7 @@ A tiny runtime type-safe _polymorphic noop object_ that substitutes for your rea
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@wherejuly/null-object)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@wherejuly/null-object)
-![npm downloads](https://img.shields.io/npm/dm/env-schema-cli.svg?color=green)
+![npm downloads](https://img.shields.io/npm/dm/@wherejuly/null-object.svg?color=green)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=green)](https://opensource.org/licenses/MIT)
 
 ---
