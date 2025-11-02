@@ -1,6 +1,6 @@
 # Null-Object
 
-A tiny runtime type-safe _polymorphic noop object_ that substitutes for your real implementation without side effects.
+A tiny runtime type-safe _polymorphic noop object_ that substitutes for your a real implementation without side effects.
 
 <small>See Null Object pattern [^1].</small>
 
@@ -14,16 +14,19 @@ A tiny runtime type-safe _polymorphic noop object_ that substitutes for your rea
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=WhereJuly_68-null-object&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=WhereJuly_68-null-object)
 
+![min+gzip](https://img.shields.io/bundlejs/size/@wherejuly/null-object)
+
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@wherejuly/null-object)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@wherejuly/null-object)
 ![npm downloads](https://img.shields.io/npm/dm/@wherejuly/null-object.svg?color=green)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=green)](https://opensource.org/licenses/MIT)
 
----
+## <!-- bundlephobia not working -->
 
 <details>
 <summary><b><a>Contents</a></b></summary>
 
+- [](#)
 - [Basic Usage](#basic-usage)
 - [Summary](#summary)
 - [Usage](#usage)
@@ -45,6 +48,8 @@ npm install @wherejuly/null-object
 Null-Object:
 
 ```typescript
+import { nullObject } from '@wherejuly/null-object';
+
 const logger = config.log ? realLogger : nullObject<Logger>();
 logger.info('User signed in'); // Always safe to call any method or access property on a null-object
 ```
@@ -52,12 +57,17 @@ logger.info('User signed in'); // Always safe to call any method or access prope
 A bundled noop function just for convenience:
 
 ```typescript
+import { noop } from '@wherejuly/null-object';
+
 noop(); // returns `undefined`
+noop(1, 'a', { b: 'c' }); // as well silently acccepts any arguments
 ```
 
 ## Summary
 
 It is often useful to silently replace an optional dependency, service, or plugin that is not available in some environment (e.g. stub metrics service in development and stage environments).
+
+It is also convenient to use in test to replace dependency objects you do not want to mock but still have to provide into the <abbr title="System Under Test">SUT</abbr>. Especially, the objects that have the methods to be called by the SUT.
 
 The package provides a safe fallback for any expected object interface by returning a no-op implementation object. It enables cleaner and more robust code due to no null checks or conditional logic.
 
